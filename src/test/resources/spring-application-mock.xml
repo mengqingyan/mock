@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress ALL -->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:m="http://www.mqy.com/schema/mock" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.mqy.com/schema/mock http://www.mqy.com/schema/mock.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-autowire="byName">
+        
+
+    <context:component-scan base-package="com.mqy.service"/>
+
+    <beans profile="mockEnable">
+        <!--开启mock-->
+        <m:mock-enable/>
+        <context:component-scan base-package="com.mqy.mock"/>
+    </beans>
+
+    <beans profile="mockSampleService">
+        <m:mock pattern="**/SampleService/doInsert" mockBean="MockDoInsert"/>
+    </beans>
+
+</beans>

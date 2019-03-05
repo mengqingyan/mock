@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:beans="http://www.springframework.org/schema/beans"
+            xmlns="http://www.mqy.com/schema/mock" targetNamespace="http://www.mqy.com/schema/mock"
+            elementFormDefault="qualified">
+    <xsd:import namespace="http://www.springframework.org/schema/beans"/>
+    <xsd:element name="mock">
+        <xsd:complexType>
+            <xsd:complexContent>
+
+                <xsd:extension base="beans:identifiedType">
+                    <xsd:attribute name="pattern" type="xsd:string" use="required">
+                        <xsd:annotation>
+                            <xsd:documentation><![CDATA[用于匹配被mock的方法，ant-Path格式]]></xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                    <xsd:attribute name="mockBean" type="xsd:string" use="required">
+                        <xsd:annotation>
+                            <xsd:documentation><![CDATA[用于指定mock逻辑]]></xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                </xsd:extension>
+            </xsd:complexContent>
+
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="mock-enable">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[启用mock功能]]></xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:string" default="mockAble"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
